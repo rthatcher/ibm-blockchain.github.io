@@ -42,17 +42,23 @@ Hyperledger Composer provides a tutorial for using Playground to create a basic 
 
 [Playground Tutorial](https://ibm-blockchain.github.io/develop/tutorials/playground-tutorial)
 
-**Note:** If you'd prefer to develop your applications locally, we recommend spending some more time on the Hyperledger Composer documentation, and exploring the Development Environment install instructions.  You can install a VSCode Extension for Composer, and use CLI commands to package up what you create into a .BNA file (Business Network Archive file).  These files can be imported into Playground to easily deploy them to your cloud environment.
+**Note:** If you are familiar with Hyperledger Composer and do not want to use Playground to develop a business network at this time, jump to section 6.
 
-Once you've deployed a Business Network Definition that you're happy to start writing some applications against, you can expose it as a REST API...
+### 4. Understanding Business Network Cards
 
-### 4. Expose Your Business Network As A REST API
+On the **My Business Networks** screen in the Hyperledger Composer Playground, you should see two _business network cards_. The first business network card is called _PeerAdmin@hlfv1_ and was automatically created by the `create_all.sh` script. The second business network card is the network administrator card which was generated, the name of this card will likely be _admin@BIZNET_ where `BIZNET` is the name of the business network you deployed in the previous step. The _name_ of a business network card is both the identity name and the network which is belongs to in the following format: _admin@BIZNET_ 
 
-Before performing this step, you must first have deployed a Business Network. You can use the Hyperledger Composer Playground, command line (CLI), or Node.js APIs to deploy a Business Network. For more information on deploying Business Networks, see the Hyperledger Composer documentation.
+The PeerAdmin card has 2 roles in our dev fabric server setup. It has the authority to install the Composer Runtime (chaincode) onto the peer, and to start the Business Network (chaincode) on the channel. Importantly, once the PeerAdmin has started the Business Network it has no access to the Business Network!
 
-On the **My Business Networks** screen in the Hyperledger Composer Playground, you should see two _business network cards_. The first business network card is called _PeerAdmin@hlfv1_ and was automatically created by the `create_all.sh` script above. The second business network card is the network administrator card which was generated and used to deploy your business network in the previous step, the name of this card will likely be _admin@BIZNET_ where `BIZNET` is the name of the business network you deployed in the previous step. The _name_ of a business network card is both the identity name and the network which is belongs to in the following format: _admin@BIZNET_
+The Network Admin card is a card that provides access to the deployed Business Network. The default is that the credentials you supply either by -A/-S or -A/-C when you deploy or start a business network is then bound to in instance of the inbuilt NetworkAdmin Participant type with a name usually the same as that specified in the -A part. To access a business network you have to use an identity that is mapped to a participant
 
-The Hyperledger Composer REST server allows you to expose your deployed Business Network via a REST API. Client applications, such as web or mobile applications, can interact with your deployed Business Network by using a REST or HTTP client. For more information on the Hyperledger Composer REST server and integrating existing systems with your deployed Business Network, see the [Integrating existing systems documentation](https://ibm-blockchain.github.io/develop/integrating/integrating-index).
+### 5. Expose Your Business Network As A REST API
+
+Once you've deployed a Business Network Definition that you're happy to start writing some applications against, you can expose it as a REST API. 
+
+Client applications, such as web or mobile applications, can interact with your deployed Business Network by using a REST or HTTP client. For more information on the Hyperledger Composer REST server and integrating existing systems with your deployed Business Network, see the [Integrating existing systems documentation](https://ibm-blockchain.github.io/develop/integrating/integrating-index).
+
+(This document assumes you have deployed a Business Network from the previous step, but note that you can also deploy networks using the command line (CLI) or the Node.js API - see the Hyperledger Composer documentation for more information.)
 
 1. Start the Hyperledger Composer REST server for a deployed Business Network by running the following commands. Replace `INSERT_BIZCARD_NAME` with the name of the Business Network Card from Playground.
 
@@ -80,7 +86,9 @@ The Hyperledger Composer REST server allows you to expose your deployed Business
 
 		http://EXTERNAL_ENDPOINT_FOR_REST_SERVER:31090/explorer/
 
-### 5. Ping the deployed business network from the CLI
+### 6. Ping the deployed business network from the CLI
+
+Delete existing development/test/local cards? Use Special names for cards use cloudPeerAdmin here ...
 
 In order to interact with your deployed Business Network using the Hyperledger Composer command line (CLI) you must export a business network card.
 
@@ -110,6 +118,11 @@ In order to interact with your deployed Business Network using the Hyperledger C
     ```bash
 		composer network ping -c CARD_NAME
     ```
+### 7. Develop and Deploy business networks from the CLI
+
+If you'd prefer to develop your applications locally, we recommend spending some more time on the Hyperledger Composer documentation, and exploring the Development Environment install instructions.  You can install a VSCode Extension for Composer, and use CLI commands to package up what you create into a .BNA file (Business Network Archive file).  These files can be imported into Playground to easily deploy them to your cloud environment.
+
+
 
 ## Congratulations!
 You've got a full development environment up and running!  Go create something exciting with IBM Blockchain!
