@@ -44,6 +44,26 @@ Hyperledger Composer provides a tutorial for using Playground to create a basic 
 
 **Note:** If you are familiar with Hyperledger Composer and do not want to use Playground to develop a Business Network at this time, jump to section 6.
 
+1. Underneath the section **Connection: hlfv1**  (NOT Connection: Web Browser) - click **Deploy New Business Network** 
+2. Use an _empty-business-network_ if you have a model already to paste in, otherwise select a template and complete details e.g.
+
+    Name: **perishable-network**
+
+    Description: **Initial Test Perishable Goods Business Network**
+
+    Network Admin Card: **admin@perishable-network**
+
+3. Scroll down and complete details:
+    Credentials: ID and **Secret**
+
+    Enrollment ID: **admin**
+
+    Enrollment Secret: **adminpw**
+
+4. Click the **Deploy** button
+5. When the Business Network is started you will see your new Network Admin card and you can click **Connect now**
+6. You are now able to work with the Define and Test tabs of the new Business Network.
+
 ### 4. Understanding Business Network Cards
 
 On the **My Business Networks** screen in the Hyperledger Composer Playground, you should see two _business network cards_. The first Business Network Card is called _PeerAdmin@hlfv1_ and was automatically created by the `create_all.sh` script. The second Business Network Card is the network administrator card which was generated, the name of this card will likely be _admin@BIZNET_ where `BIZNET` is the name of the Business Network you deployed in the previous step. The _name_ of a business network card is both the identity name and the network which is belongs to in the following format: _admin@BIZNET_ 
